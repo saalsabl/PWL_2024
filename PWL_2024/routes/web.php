@@ -1,5 +1,10 @@
 <?php
 
+use App\Http\Controllers\AboutController;
+use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PageController;
+use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,25 +30,34 @@ Route::get('/world', function () {
     return 'Hello World';
 });
 
-Route::get('/', function () {
-    return 'Selamat Datang';
-});
+// Route::get('/', function () {
+//     return 'Selamat Datang';
+// });
 
-Route::get('/about', function () {
-    return '2341720171 Aaisyah Nursalsabiil N. P';
-});
+Route::get('/',[PageController::class, 'index']);
+
+// Route::get('/about', function () {
+//     return '2341720171 Aaisyah Nursalsabiil N. P';
+// });
+
+Route::get('/about', [PageController::class,'about']);
 
 Route::get('/user/{Aaisyah}', function ($name) {
     return 'Nama saya '.$name;
 });
 
+Route::get('/user/{Aaisyah}', function ($name) {
+    return 'Nama saya '.$name;
+});
 Route::get('/posts/{post}/comments/{comment}', function ($postId, $commentId) {
     return 'Pos ke-'.$postId. "Komentar ke-: " .$commentId;
 });
 
-Route::get('/articles/{id}', function ($id) {
-    return "Halaman Artikel dengan ID " .$id;
-});
+// Route::get('/articles/{id}', function ($id) {
+//     return "Halaman Artikel dengan ID " .$id;
+// });
+
+Route::get('/articles/{id}', [PageController::class,'articles']);
 
 // Route::get('/user/{name?}', function ($name='null') {
 //     return 'Nama saya ' .$name;
@@ -52,3 +66,18 @@ Route::get('/articles/{id}', function ($id) {
 Route::get('/user/{name?}', function ($name='John') {
     return 'Nama saya ' .$name;
 });
+
+Route::get('/user/profile', function() {
+    //
+    })->name('profile');
+    
+Route::get('/hello', [WelcomeController::class,'hello']);
+
+//Home Controller
+Route::get('/', [HomeController::class,'index']);
+
+//AboutController
+Route::get('/about', [AboutController::class,'about']);
+
+//ArticleController
+Route::get('/articles/{id}', [ArticleController::class,'articles']);
