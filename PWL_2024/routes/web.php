@@ -99,3 +99,5 @@ Route::get('/greeting', function () {
     });
     
 Route::get('/greeting', [WelcomeController::class, 'greeting']);
+
+
